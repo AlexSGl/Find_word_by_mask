@@ -30,20 +30,39 @@ for word in list_noun_len:
 
 print('Найдено', count, 'слов:', list_noun_len_word)
 
-# Поиск дополнительных букв в слове
-char_str = input('Какие буквы есть в слове, введите через пробел:')
-char_arr = char_str.split()
-list_noun_len_word_add = []
-for word in list_noun_len_word:
-    count = 0
-    for char in char_arr:
-        if char in word:
-            count += 1
-            if count == len(char_arr):
-                list_noun_len_word_add.append(word)
-if len(list_noun_len_word_add):
-    print('Найдено', len(list_noun_len_word_add), 'слов:', list_noun_len_word_add)
+# Поиск слов с буквами, которые ЕСТЬ в слове
+char_str_yes = input('Какие буквы ЕСТЬ в слове, введите через пробел:')
+if char_str_yes != '':
+    char_arr_yes = char_str_yes.split()
+    print(char_arr_yes)
+    list_noun_len_word_yes = []
+    for word in list_noun_len_word:
+        count = 0
+        for char in char_arr_yes:
+            if char in word:
+                count += 1
+                if count == len(char_arr_yes):
+                    list_noun_len_word_yes.append(word)
 else:
-    print(f'Слова с буквами "{char_str}" отсутствуют')
+    list_noun_len_word_yes = list_noun_len_word
+
+print('Найдено', len(list_noun_len_word_yes), 'слов:', list_noun_len_word_yes)
+
+# Поиск слов с буквами, которых НЕТ в слове
+char_str_no = input('Каких букв НЕТ в слове, введите через пробел:')
+if char_str_no != '':
+    char_arr_no = char_str_no.split()
+    list_noun_len_word_yes_no = []
+    for word in list_noun_len_word_yes:
+        count = 0
+        for char in char_arr_no:
+            if char not in word:
+                count += 1
+                if count == len(char_arr_no):
+                    list_noun_len_word_yes_no.append(word)
+else:
+    list_noun_len_word_yes_no = list_noun_len_word_yes
+
+print('Найдено', len(list_noun_len_word_yes_no), 'слов:', list_noun_len_word_yes_no)
 
 my_file_word.close()
